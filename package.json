@@ -1,0 +1,27 @@
+{
+  "name": "portfolio-generator",
+  "version": "1.0.0",
+  "description": "student Nodejs project 1",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DuckArroyo/portfolio-generator.git"
+  },
+  "keywords": [
+    "portfolio",
+    "student",
+    "test"
+  ],
+  "author": "Rafael Arroyo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DuckArroyo/portfolio-generator/issues"
+  },
+  "homepage": "https://github.com/DuckArroyo/portfolio-generator#readme",
+  "dependencies": {
+    "inquirer": "^8.1.5"
+  }
+}

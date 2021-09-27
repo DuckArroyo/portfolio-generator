@@ -1,4 +1,5 @@
 const profileDataArgs = process.argv.slice(2, process.argv.length);
+//aka const profileDataArgs = process.argv.slice(2);
 // console.log(profileDataArgs);
 const fs = require("fs");
 const generatePage = require("./src/page-template.js");
@@ -14,4 +15,4 @@ fs.writeFile("./index.html", generatePage(name, github), (err) => {
 
   console.log("Portfolio complete! Checkout index.html to see the output!");
 });
-//!Continue on module 9.2.5
+//!Continue on module 9.3.4
