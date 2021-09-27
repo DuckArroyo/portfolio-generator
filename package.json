@@ -22,6 +22,6 @@
   },
   "homepage": "https://github.com/DuckArroyo/portfolio-generator#readme",
   "dependencies": {
-    "inquirer": "^8.1.5"
+    "inquirer": "file:inquirer"
   }
 }
