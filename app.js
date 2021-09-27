@@ -1,5 +1,6 @@
 const profileDataArgs = process.argv.slice(2, process.argv.length);
 // console.log(profileDataArgs);
+const fs = require("fs");
 
 //! This two variables are replaced by line 7(third line)
 //This feature is called assignment destructuring
@@ -21,7 +22,7 @@ const [name, github] = profileDataArgs;
 
 // printProfileData(profileDataArgs);
 
-const generatePage = (userName, githubName) => {
+const generatePage = (name, github) => {
   return `
   <!DOCTYPE html>
   <html lang="en">
@@ -40,6 +41,9 @@ const generatePage = (userName, githubName) => {
 `;
 };
 
-console.log(name, github);
-console.log(generatePage(name, github));
-//!Continue on module 9.2.4
+fs.writeFile("index.html", generatePage(name, github), (err) => {
+  if (err) throw err;
+
+  console.log("Portfolio complete! Checkout index.html to see the output!");
+});
+//!Continue on module 9.2.5
