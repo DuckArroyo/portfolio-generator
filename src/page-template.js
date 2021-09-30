@@ -1,3 +1,13 @@
+const generateAbout = (aboutText) => {
+  if (!aboutText) {
+    return "";
+  }
+  return `
+  <section class="text-dark bg-primary p-2 display-inline-block">About<p>${aboutText}<p>
+  </section>
+  `;
+};
+
 module.exports = (templateData) => {
   //Destructure project and about data from templateData based on their property key names
   const { projects, about, ...header } = templateData;
@@ -31,7 +41,8 @@ module.exports = (templateData) => {
     </header>
 
     <main class="container my-5">
-
+      ${generateAbout(about)}
+    </main>
     <footer class="container text-center py-3">
       <h3 class="text-dark">&copy; ${new Date().getFullYear()} by ${
     header.name
