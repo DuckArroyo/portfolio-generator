@@ -11,7 +11,7 @@ const generatePage = require("./src/page-template.js");
 //   projects: [],
 // };
 
-//!Commented out for development - reinstate once development is completed.
+//Commented out for development - reinstate once development is completed.
 const promptUser = () => {
   return inquirer.prompt([
     {
@@ -55,7 +55,7 @@ const promptUser = () => {
     },
   ]);
 };
-//!Reinstate ends
+//Reinstate ends
 
 const promptProject = (portfolioData) => {
   console.log(`
@@ -144,7 +144,23 @@ promptUser()
   .then(promptProject)
   .then((portfolioData) => {
     console.log(portfolioData); //! leave this console log for later. if portfolioData is surrounded by [], it will spit out objects.
-    const pageHTML = generatePage(portfolioData);
+    return generatePage(portfolioData);
+  })
+  .then(pageHTML => {
+    return writeFile(pageHTML);
+  })
+  .then(writeFileResponse => {
+    console.log(writeFileResponse);
+    return copyFile();
+  })
+  .then(copyFileResponse => {
+    console.log(copyFileResponse);
+  })
+  .catch(err => {
+    console.log(err);
+  });
+
+
     fs.writeFile("./dist/index.html", pageHTML, (err) => {
       if (err) throw new Err(err);
       console.log(
