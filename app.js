@@ -2,59 +2,59 @@ const fs = require("fs");
 const inquirer = require("inquirer");
 const generatePage = require("./src/page-template.js");
 
-//!Continue on module 9.4.5 -
+//!Continue on module 9.5.4 -
 
 //TODO COMMENTED IN FOR DEVELOPMENT
-const mockData = {
-  name: "Lernantino",
-  github: "lernantino",
-  projects: [],
-};
+// const mockData = {
+//   name: "Lernantino",
+//   github: "lernantino",
+//   projects: [],
+// };
 
 //!Commented out for development - reinstate once development is completed.
-// const promptUser = () => {
-//   return inquirer.prompt([
-//     {
-//       type: "input",
-//       name: "name",
-//       message: "What is your name? (Required)",
-//       validate: (nameInput) => {
-//         if (nameInput) {
-//           return true;
-//         } else {
-//           console.log("Please enter your name!");
-//           return false;
-//         }
-//       },
-//     },
-//     {
-//       type: "input",
-//       name: "github",
-//       message: "Enter your GitHub Username: (Required)",
-//       validate: (githubInput) => {
-//         if (githubInput) {
-//           return true;
-//         } else {
-//           console.log("Please enter your GitHub username");
-//           return false;
-//         }
-//       },
-//     },
-//     {
-//       type: "confirm",
-//       name: "confirmAbout",
-//       message:
-//         'Would you like to enter some information about yourself for an "About" section?',
-//       default: true,
-//     },
-//     {
-//       type: "input",
-//       name: "about",
-//       message: "Provide some information about yourself:",
-//       when: ({ confirmAbout }) => confirmAbout,
-//     },
-//   ]);
-// };
+const promptUser = () => {
+  return inquirer.prompt([
+    {
+      type: "input",
+      name: "name",
+      message: "What is your name? (Required)",
+      validate: (nameInput) => {
+        if (nameInput) {
+          return true;
+        } else {
+          console.log("Please enter your name!");
+          return false;
+        }
+      },
+    },
+    {
+      type: "input",
+      name: "github",
+      message: "Enter your GitHub Username: (Required)",
+      validate: (githubInput) => {
+        if (githubInput) {
+          return true;
+        } else {
+          console.log("Please enter your GitHub username");
+          return false;
+        }
+      },
+    },
+    {
+      type: "confirm",
+      name: "confirmAbout",
+      message:
+        'Would you like to enter some information about yourself for an "About" section?',
+      default: true,
+    },
+    {
+      type: "input",
+      name: "about",
+      message: "Provide some information about yourself:",
+      when: ({ confirmAbout }) => confirmAbout,
+    },
+  ]);
+};
 //!Reinstate ends
 
 const promptProject = (portfolioData) => {
@@ -63,7 +63,7 @@ const promptProject = (portfolioData) => {
     Add a New Project
     ================
    `);
-  //If there is no 'projects' attay property, create one
+  //If there is no 'projects' array property, create one
   if (!portfolioData.projects) {
     portfolioData.projects = [];
   }
@@ -137,19 +137,26 @@ const promptProject = (portfolioData) => {
     });
 };
 
-//TODO - MOCK Data
-const pageHTML = generatePage(mockData);
+// //TODO - MOCK Data
+// const pageHTML = generatePage(mockData);
 
-//!reinstate after development
-// promptUser()
-//   .then(promptProject)
-//   .then((portfolioData) => {
-//console.log(portfolioData); //! leave this console log for later. if portfolioData is surrounded by [], it will spit out objects.
-//const pageHTML = generatePage(portfolioData);
-fs.writeFile("./index.html", pageHTML, (err) => {
-  if (err) throw new Err(err);
-  console.log(
-    "Page created! Check out index.html in this directory to see it!"
-  );
-});
-// });
+promptUser()
+  .then(promptProject)
+  .then((portfolioData) => {
+    console.log(portfolioData); //! leave this console log for later. if portfolioData is surrounded by [], it will spit out objects.
+    const pageHTML = generatePage(portfolioData);
+    fs.writeFile("./dist/index.html", pageHTML, (err) => {
+      if (err) throw new Err(err);
+      console.log(
+        "Page created! Check out index.html in this directory to see it!"
+      );
+
+      fs.copyFile("./src/style.css", "./dist/style.css", (err) => {
+        if (err) {
+          console.log(err);
+          return;
+        }
+        console.log("Style sheet copied successfully!");
+      });
+    });
+  });
