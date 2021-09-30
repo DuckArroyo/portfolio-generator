@@ -1,8 +1,8 @@
-const fs = require("fs");
+const { writeFile, copyFile } = require("./utils/generate-site.js");
 const inquirer = require("inquirer");
 const generatePage = require("./src/page-template.js");
 
-//!Continue on module 9.5.4 -
+//!Continue on module 9.5.7 -
 
 //TODO COMMENTED IN FOR DEVELOPMENT
 // const mockData = {
@@ -146,33 +146,16 @@ promptUser()
     console.log(portfolioData); //! leave this console log for later. if portfolioData is surrounded by [], it will spit out objects.
     return generatePage(portfolioData);
   })
-  .then(pageHTML => {
+  .then((pageHTML) => {
     return writeFile(pageHTML);
   })
-  .then(writeFileResponse => {
+  .then((writeFileResponse) => {
     console.log(writeFileResponse);
     return copyFile();
   })
-  .then(copyFileResponse => {
+  .then((copyFileResponse) => {
     console.log(copyFileResponse);
   })
-  .catch(err => {
+  .catch((err) => {
     console.log(err);
-  });
-
-
-    fs.writeFile("./dist/index.html", pageHTML, (err) => {
-      if (err) throw new Err(err);
-      console.log(
-        "Page created! Check out index.html in this directory to see it!"
-      );
-
-      fs.copyFile("./src/style.css", "./dist/style.css", (err) => {
-        if (err) {
-          console.log(err);
-          return;
-        }
-        console.log("Style sheet copied successfully!");
-      });
-    });
   });
