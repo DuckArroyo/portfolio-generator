@@ -16,5 +16,4 @@ The application uses asyncronous promises to make the application run step by st
   - If successful, the application will log a successful copy of the ccs style sheet.
   - If rejected, the application will stop and will log an error.
 
-<img src="./Screen Shot 2021-09-29 at 10.10.56 PM.png">
-<img src="./Screen Shot 2021-09-29 at 10.11.02 PM.png">
+<img src="./Screen Shot 2021-09-30 at 6.14.30 PM.png">
