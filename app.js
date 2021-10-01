@@ -2,12 +2,6 @@ const { writeFile, copyFile } = require("./utils/generate-site.js");
 const inquirer = require("inquirer");
 const generatePage = require("./src/page-template.js");
 
-//!Continue on module 9.5.7 -
-//!Questions
-//Ping pong between generate-site.js
-// issues with that?
-//
-
 //TODO COMMENTED IN FOR DEVELOPMENT
 // const mockData = {
 //   name: "Lernantino",
